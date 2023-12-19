@@ -22,7 +22,6 @@ function getRectangleArea(width, height) {
   return width * height;
 }
 
-console.log(getRectangleArea(5, 10));
 /**
  * Returns a circumference of circle given by radius.
  *
@@ -39,7 +38,6 @@ function getCircleCircumference(radius) {
   return 2 * piValue * radius;
 }
 
-console.log(getCircleCircumference(5));
 /**
  * Returns an average of two given numbers.
  *
@@ -56,8 +54,6 @@ function getAverage(value1, value2) {
   let average = (value1 + value2) / 2;
   return average;
 }
-
-console.log(getAverage(-3, 3));
 
 /**
  * Returns a distance between two points by cartesian coordinates.
@@ -78,8 +74,6 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
   const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
   return distance.toFixed(2);
 }
-
-console.log(getDistanceBetweenPoints((-5, 0)(10, -10)));
 
 /**
  * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
