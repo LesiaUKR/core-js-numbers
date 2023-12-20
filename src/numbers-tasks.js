@@ -203,8 +203,23 @@ function roundToPowerOfTen(num, pow) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n <= 1) {
+    return false;
+  }
+  if (n <= 3) {
+    return true;
+  }
+  if (n % 2 === 0 || n % 3 === 0) {
+    return false;
+  }
+  for (let i = 5; i * i <= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /**
@@ -222,10 +237,13 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const convertedValue = +value;
+  if (!Number.isNaN(convertedValue)) {
+    return convertedValue;
+  }
+  return def;
 }
-
 /**
  * Returns the cube of the given number.
  *
@@ -237,8 +255,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -254,8 +272,14 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  const fib = [0, 1];
+
+  for (let i = 2; i <= index; i += 1) {
+    fib[i] = fib[i - 1] + fib[i - 2];
+  }
+
+  return fib[index];
 }
 
 /**
@@ -269,8 +293,13 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let sum = 0;
+
+  for (let i = 1; i <= n; i += 1) {
+    sum += i;
+  }
+  return sum;
 }
 
 /**
@@ -284,8 +313,13 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let sum = 0;
+  const digitsArray = num.toString().split('').map(Number);
+  for (let i = 0; i <= digitsArray.length - 1; i += 1) {
+    sum += digitsArray[i];
+  }
+  return sum;
 }
 
 /**
@@ -299,10 +333,15 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
-}
+function isPowerOfTwo(num) {
+  if (num <= 0) {
+    return false;
+  }
 
+  const logBase2 = Math.log2(num);
+
+  return Number.isInteger(logBase2);
+}
 /**
  * Returns the sine of a number.
  *
@@ -313,8 +352,8 @@ function isPowerOfTwo(/* num */) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
@@ -328,8 +367,18 @@ function getSine(/* num */) {
  * 255, 16 => 'ff'
  * 2, 2    => '10'
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  if (
+    typeof number !== 'number' ||
+    typeof base !== 'number' ||
+    base < 2 ||
+    base > 36
+  ) {
+    throw new Error(
+      'Invalid input. Number and base must be valid numbers, and base must be between 2 and 36.'
+    );
+  }
+  return number.toString(base);
 }
 
 /**
